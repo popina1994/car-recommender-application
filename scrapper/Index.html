@@ -499,6 +499,9 @@ function bingSearchOptions(form) {
     if (form.color.value) options.push("color=" + form.color.value);
     options.push("count=" + form.count.value);
     options.push("offset=" + form.offset.value);
+    options.push("w=" + form.width.value);
+        options.push("h=" + form.height.value);
+        options.push("c=" + 7);
     return options.join("&");
 }
 
@@ -637,7 +640,13 @@ function newBingImageSearch(form) {
                 Bing Image Search API demo</h2>
 
                 <input type="text" name="query" id="term" placeholder="Search for images" autocomplete=off>
-
+                <p>
+                    <input type="number" name="count" placeholder="Broj slika" value="2" autocomplete=off>
+                    <input type="number" name="width" placeholder="Sirina" value="299" autocomplete=off>
+                    <input type="number" name="height" placeholder="Visina" value="299" autocomplete=off>
+                    <input type="submit" style="display: none;" />
+                </p>
+                
                 <p>
                     Aspect
                     <input type=radio name="aspect" id="any" value="all" checked>
@@ -679,11 +688,11 @@ function newBingImageSearch(form) {
                     &nbsp;&nbsp;&nbsp;<input type=checkbox id="safe" name="safe" value="on" checked><label for="safe">SafeSearch</label>
 
                     <!-- these hidden fields control paging -->
-                    <input type=hidden name="count" value="25">
+                    <!-- <input type=hidden name="count" value="2">-->
                     <input type=hidden name="offset" value="0">
                     <input type=hidden name="nextoffset" value="">
                     <input type=hidden name="stack" value="[]">
-    </form>
+</form>
 
     </div>
     <div id="error">
