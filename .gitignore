@@ -73,3 +73,13 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+machine-learning/fine_tune_inception/transfer_learning_tutorial/log/
+machine-learning/fine_tune_inception/transfer_learning/log/
+*.jpg
+machine-learning/fine_tune_inception/transfer_learning_tutorial/log_eval_test/
+machine-learning/fine_tune_inception/transfer_learning_tutorial/__pycache__/train_flowers.cpython-36.pyc
+machine-learning/fine_tune_inception/transfer_learning_tutorial/__pycache__/
+machine-learning/fine_tune_inception/transfer_learning/inception_resnet_v2_2016_08_30.ckpt
+machine-learning/fine_tune_inception/.idea/
+machine-learning/cars/
+*.tfrecord
