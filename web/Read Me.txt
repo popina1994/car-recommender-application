@@ -6,3 +6,16 @@ potrebni su form-data: size tipa text , file (file)
 vraca json cart_type trenutno Audi A6 u sucaju poslate slike
 
 Za pokretanje potrebno je biti pozicioniran u web/bin/ i pokrenuti sa ./run.sh
+
+Za manualno podesavanje potrebno je imati python3 i virtual env
+
+virtualenv -p python3 {path}
+
+source {path}/bin/activate
+pip install -r web/requirements3.txt -U
+
+python3 web/api/main.py
+
+za izlazak iz virtual env-a potrebno je samo
+deactivate
+
