@@ -1,4 +1,6 @@
 import os
+import copy
+import datetime
 from flask import Flask, request, json, Response
 from werkzeug.utils import secure_filename
 
@@ -30,6 +32,10 @@ def upload_image():
     return resp
   if file and allowed_file(file.filename):
     filename = secure_filename(file.filename)
+    while os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
+      filename_first_part = filename[:filename.rfind('.')]
+      filename_second_part = filename[filename.rfind('.'):len(filename)]
+      filename = filename_first_part + '.' + str(datetime.datetime.now()) + filename_second_part
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     resp = Response(json.dumps({'car_type': 'Audi A6'}))
     resp.headers['Content-Type'] = 'application/json'
