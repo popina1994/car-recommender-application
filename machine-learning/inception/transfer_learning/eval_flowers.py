@@ -1,10 +1,10 @@
 import tensorflow as tf
 from tensorflow.python.platform import tf_logging as logging
 from tensorflow.contrib.framework.python.ops.variables import get_or_create_global_step
-from transfer_learning_tutorial.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
+from inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
 import time
 import os
-from transfer_learning_tutorial.train_flowers import get_split, load_batch
+from train_flowers import get_split, load_batch
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 slim = tf.contrib.slim
