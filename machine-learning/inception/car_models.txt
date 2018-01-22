@@ -1,61 +1,65 @@
+Here is the list of the cars for which labeling of pictures is planned.
+1) WIth - are the ones whose pictures are uploaded to mega
+2) With * are the ones whose pictures are uploaded, but should be detialed inspected
+3) With nothin are the ones whose pictures are supposed to be downloaded.
 AUDI
 
-1. a4
-2. a6
-3. Q5
-4. Q7
-5. a1
-6. a7
-7. a3
-8. Q2
-9. a5
-10. Q3
+-1. a4
+-2. a6
+-3. Q5
+-4. Q7
+-5. a1
+-6. a7
+-7. a3
+-8. Q2
+-9. a5
+-10. Q3
 *******************
 
 BMW
-1. series 3 
-2. 118
-3. 320
-4. 316
-5. X1
-6. 520
-7. 325
-8. X3
-9. X5
-10. 318
+!!!!-1. series 3
+-2. 118
+-3. 320
+-4. 316
+-5. X1
+-6. 520
+-7. 325
+-8. X3
+-9. X5
+-10. 318
 *******************
 
 VOLKSWAGEN
-1. golf 6
-2. polo
-3. golf 4
-4. golf 5
-5. passat B5.5
-6. passat B6
-7. passat CC
-8. golf 2
-9. TOURAN
-10. golf 7
+*-1. golf 6
+-2. polo
+*-3. golf 4
+*-4. golf 5
+*-5. passat B5.5
+-6. passat B6
+-7. passat CC
+*-8. golf 2
+-9. TOURAN
+*-10. golf 7
 *******************
 
 OPEL
-1. ASTRA H
-2. corsa C
-3. meriva
-4. zafira
-5. astra J
-6. corsa D
-7. astra G
-8. vectra
-9. insignia
-10. astra F
+-1. ASTRA H
+-2. corsa C
+-3. meriva
+-4. zafira
+-5. astra J
+-6. corsa D
+-7. astra G
+-8. vectra
+-9. insignia
+-10. astra F
 *******************
 
 FORD
-1. focus 
-2. fiesta 
+1. focus
+2. fiesta
 3. mondeo
-4. kuga 
+4. kuga
 5. galaxy
 6. c-max
 7. fusion
@@ -65,7 +69,7 @@ FORD
 *******************
 
 RENAULT
-1. clio 
+1. clio
 2. twingo
 3. megane
 4. laguna
@@ -104,7 +108,7 @@ MERZEDES BENZ
 *******************
 
 FIAT
-1. panda 
+1. panda
 2. 500
 3. multipla
 4. punto
