@@ -1,8 +1,8 @@
 import tensorflow as tf
 from tensorflow.contrib.framework.python.ops.variables import get_or_create_global_step
 from tensorflow.python.platform import tf_logging as logging
-from transfer_learning_tutorial.inception_preprocessing import preprocess_image
-from transfer_learning_tutorial.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
+from inception_preprocessing import preprocess_image
+from inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
 import os
 import time
 slim = tf.contrib.slim
@@ -77,14 +77,14 @@ def get_split(split_name, dataset_dir, file_pattern=file_pattern, file_pattern_f
     - dataset (Dataset): A Dataset class object where we can read its various components for easier batch creation later.
     '''
 
-    #First check whether the split_name is train or validation
+    # First check whether the split_name is train or validation
     if split_name not in ['train', 'validation']:
         raise ValueError('The split_name %s is not recognized. Please input either train or validation as the split_name' % (split_name))
 
-    #Create the full path for a general file_pattern to locate the tfrecord_files
+    # Create the full path for a general file_pattern to locate the tfrecord_files
     file_pattern_path = os.path.join(dataset_dir, file_pattern % (split_name))
 
-    #Count the total number of examples in all of these shard
+    # Count the total number of examples in all of these shard
     num_samples = 0
     file_pattern_for_counting = file_pattern_for_counting + '_' + split_name
     tfrecords_to_count = [os.path.join(dataset_dir, file) for file in os.listdir(dataset_dir) if file.startswith(file_pattern_for_counting)]
@@ -92,10 +92,10 @@ def get_split(split_name, dataset_dir, file_pattern=file_pattern, file_pattern_f
         for record in tf.python_io.tf_record_iterator(tfrecord_file):
             num_samples += 1
 
-    #Create a reader, which must be a TFRecord reader in this case
+    # Create a reader, which must be a TFRecord reader in this case
     reader = tf.TFRecordReader
 
-    #Create the keys_to_features dictionary for the decoder
+    # Create the keys_to_features dictionary for the decoder
     keys_to_features = {
       'image/encoded': tf.FixedLenFeature((), tf.string, default_value=''),
       'image/format': tf.FixedLenFeature((), tf.string, default_value='jpg'),
@@ -103,7 +103,7 @@ def get_split(split_name, dataset_dir, file_pattern=file_pattern, file_pattern_f
           [], tf.int64, default_value=tf.zeros([], dtype=tf.int64)),
     }
 
-    #Create the items_to_handlers dictionary for the decoder.
+    # Create the items_to_handlers dictionary for the decoder.
     items_to_handlers = {
     'image': slim.tfexample_decoder.Image(),
     'label': slim.tfexample_decoder.Tensor('image/class/label'),

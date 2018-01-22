@@ -82,6 +82,10 @@ machine-learning/fine_tune_inception/transfer_learning_tutorial/__pycache__/
 machine-learning/fine_tune_inception/transfer_learning/inception_resnet_v2_2016_08_30.ckpt
 machine-learning/fine_tune_inception/.idea/
 machine-learning/cars/
+machine-learning/inception/log
+machine-learning/inception/.idea
+machine-learning/inception/__pycache__
+machine-learning/inception/.idea
 *.tfrecord
 machine-learning/fine_tune_inception/transfer_learning_tutorial/inception_resnet_v2_2016_08_30.ckpt
 android/.idea/gradle.xml
