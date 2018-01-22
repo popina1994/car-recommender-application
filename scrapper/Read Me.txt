@@ -1,0 +1,6 @@
+1) If subscription key has expired register on: https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/
+2) Update getSubscriptionKey() funcion in index.html, so it returns new API key (key is found on your image search API)
+3) Open index.html in Edge
+4) Type a term
+5) Choose number of pictures to be downloaded from once (it cannot be more than 150)
+6) Enjoy downloading :)
