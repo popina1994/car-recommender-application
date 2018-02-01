@@ -56,42 +56,42 @@ OPEL
 *******************
 
 FORD
-1. focus
-2. fiesta
-3. mondeo
-4. kuga
-5. galaxy
-6. c-max
-7. fusion
-8. ranger
-9. escort
-10. Ka
+-1. focus
+-2. fiesta
+-3. mondeo
+-4. kuga
+-5. galaxy
+-6. c-max
+-7. fusion
+*-8. ranger
+-9. escort
+-10. Ka
 *******************
 
 RENAULT
-1. clio
-2. twingo
-3. megane
-4. laguna
-5. scenic
-6. modus
-7. kangoo
-8. captur
-9. latitude
-10. fluence
+-1. clio
+-2. twingo
+-3. megane
+-4. laguna
+-5. scenic
+-6. modus
+-7. kangoo
+-8. captur
+-9. latitude
+-10. fluence
 *******************
 
 PEUGEOT
-1. 206
-2. 307
-3. 207
-4. 508
-5. 407
-6. 308
-7. 208
-8. 3008
-9. 406
-10. 4007
+-1. 206
+-2. 307
+-3. 207
+-4. 508
+-5. 407
+-6. 308
+-7. 208
+-8. 3008
+-9. 406
+-10. 4007
 *******************
 
 MERZEDES BENZ
