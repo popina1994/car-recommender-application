@@ -108,16 +108,16 @@ MERZEDES BENZ
 *******************
 
 FIAT
-1. panda
-2. 500
-3. multipla
-4. punto
-5. bravo
-6. stilo
-7. croma
-8. doblo
-9. grande punto
-10. idea
+-1. panda
+-2. 500
+-3. multipla
+-4. punto
+-5. bravo
+-6. stilo
+-7. croma
+-8. doblo
+-9. grande punto
+-10. idea
 *******************
 
 KIA
