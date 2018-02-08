@@ -121,14 +121,14 @@ FIAT
 *******************
 
 KIA
-1. Sportage
-2. ceed
-3. picanto
-4. sorento
-5. stonic
-6. rio
-7. carens
-8. cerato
-9. pride
-10. soul
+-1. Sportage
+-2. ceed
+-3. picanto
+-4. sorento
+-5. stonic
+-6. rio
+-7. carens
+-8. cerato
+-9. pride
+-10. soul
 *******************
