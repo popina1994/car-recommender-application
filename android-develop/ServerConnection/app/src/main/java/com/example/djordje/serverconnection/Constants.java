@@ -6,7 +6,7 @@ package com.example.djordje.serverconnection;
 
 public class Constants {
 
-    public static final String UPLOAD_URL = "http://192.168.106.1/AndroidImageUpload/upload.php";
-    public static final String IMAGES_URL = "http://192.168.106.1/AndroidImageUpload/getImages.php";
+    public static final String UPLOAD_URL = "http://147.91.11.2:5000/v1/rpc/upload";
+    public static final String IMAGES_URL = "";
 }
 
