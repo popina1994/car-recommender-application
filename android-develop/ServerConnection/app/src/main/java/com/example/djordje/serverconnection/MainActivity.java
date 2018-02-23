@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
+import net.gotev.uploadservice.UploadServiceBroadcastReceiver;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,14 +75,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Integer width = bf.getWidth();
         size = width*height;
         try {
-            String uploadId = UUID.randomUUID().toString();
-
             //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, Constants.UPLOAD_URL)
+            new MultipartUploadRequest(this.getApplicationContext(), "", Constants.UPLOAD_URL)
                     .addFileToUpload(path, "file") //Adding file
                     .addParameter("size", size.toString()) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
+                    .setDelegate(new UploadServiceBroadcastReceiver())
                     .startUpload(); //Starting the upload
 
         } catch (Exception exc) {

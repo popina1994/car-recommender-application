@@ -20,9 +20,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0'
 
     //Add this line
-    compile 'net.gotev:uploadservice:2.1'
+    compile 'net.gotev:uploadservice:3.3'
 }
