@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .addParameter("size", size.toString()) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
-                    .setDelegate(new UploadReceiver())
+                    .setDelegate(new UploadReceiver(this))
                     .startUpload(); //Starting the upload
 
         } catch (Exception exc) {
@@ -168,5 +168,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == buttonUpload) {
             uploadMultipart();
         }
+    }
+
+    public void tellCar(int car)
+    {
+        final String cars[] = {"audi", "bmw"};
+        Toast.makeText(this, cars[car], Toast.LENGTH_SHORT).show();
     }
 }

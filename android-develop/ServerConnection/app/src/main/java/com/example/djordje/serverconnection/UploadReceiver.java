@@ -1,7 +1,9 @@
 package com.example.djordje.serverconnection;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.gotev.uploadservice.ServerResponse;
 import net.gotev.uploadservice.UploadInfo;
@@ -16,6 +18,18 @@ import org.json.*;
  */
 
 public class UploadReceiver extends UploadServiceBroadcastReceiver {
+
+    private MainActivity activity;
+
+
+    public UploadReceiver()
+    {
+    }
+
+    public UploadReceiver(MainActivity activity)
+    {
+        this.activity = activity;
+    }
 
     @Override
     public void onProgress(Context context, UploadInfo uploadInfo) {
@@ -32,7 +46,13 @@ public class UploadReceiver extends UploadServiceBroadcastReceiver {
         super.onCompleted(context, uploadInfo, serverResponse);
         try
         {
-            JSONObject type = new JSONObject(serverResponse.getBodyAsString());
+            JSONObject jsonResponse = new JSONObject(serverResponse.getBodyAsString());
+            int carType = jsonResponse.getInt("car_type");
+            if (activity != null)
+            {
+                activity.tellCar(carType);
+            }
+
         }
         catch (JSONException ex)
         {
