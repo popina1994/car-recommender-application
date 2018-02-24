@@ -88,3 +88,8 @@ machine_learning/fine_tune_inception/transfer_learning_tutorial/inception_resnet
 android/.idea/gradle.xml
 android/.idea/
 log/
+web/venv/
+android-develop/.idea/workspace.xml
+.idea/android-application.iml
+android-develop/ServerConnection/.idea/modules.xml
+.idea/

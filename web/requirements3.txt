@@ -4,3 +4,6 @@ itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
 Werkzeug==0.13
+tensorflow==1.5.0
+pillow=5.0.0
+

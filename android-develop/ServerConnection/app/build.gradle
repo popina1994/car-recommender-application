@@ -23,5 +23,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0'
 
     //Add this line
-    compile 'net.gotev:uploadservice:3.3'
+    compile 'net.gotev:uploadservice:3.4.2'
 }

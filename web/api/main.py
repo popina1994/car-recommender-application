@@ -10,10 +10,6 @@ app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 # Log directory where checkpoint model is saved
-log_dir = os.path.join('log')
-
-# Labels path
-labels_path = os.path.join(log_dir, 'labels.txt')
 
 
 def allowed_file(filename):
@@ -51,8 +47,9 @@ def upload_image():
 
 
 if __name__ == '__main__':
-    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'web', 'data')
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'data')
     app.config['SECRET_KEY'] = 'cars123'
     app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
-    app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir, labels_path=labels_path)
-    app.run()
+    log_dir = os.path.join(os.getcwd(), '..\..\log');
+    app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
+    app.run('192.168.137.212', 5000);
