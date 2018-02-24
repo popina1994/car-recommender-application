@@ -8,6 +8,8 @@ import net.gotev.uploadservice.UploadInfo;
 import net.gotev.uploadservice.UploadServiceBroadcastReceiver;
 
 import static android.content.ContentValues.TAG;
+import org.json.*;
+
 
 /**
  * Created by NORDEUS2 on 22.2.2018.
@@ -28,5 +30,13 @@ public class UploadReceiver extends UploadServiceBroadcastReceiver {
     @Override
     public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
         super.onCompleted(context, uploadInfo, serverResponse);
+        try
+        {
+            JSONObject type = new JSONObject(serverResponse.getBodyAsString());
+        }
+        catch (JSONException ex)
+        {
+
+        }
     }
 }

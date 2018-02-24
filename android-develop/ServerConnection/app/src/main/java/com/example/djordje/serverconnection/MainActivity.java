@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .addParameter("size", size.toString()) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
-                    .setDelegate(new UploadServiceBroadcastReceiver())
+                    .setDelegate(new UploadReceiver())
                     .startUpload(); //Starting the upload
 
         } catch (Exception exc) {
@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(bitmap);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

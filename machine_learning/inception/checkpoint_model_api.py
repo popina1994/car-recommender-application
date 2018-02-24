@@ -1,6 +1,9 @@
 import tensorflow as tf
-from transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
-from transfer_learning.inception_preprocessing import preprocess_image
+
+import sys
+
+from .transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
+from .transfer_learning.inception_preprocessing import preprocess_image
 from PIL import Image
 import numpy as np
 import os
@@ -64,7 +67,7 @@ class ConvNetModel(object):
 
         # Read labels
         if labels_path is None:
-            labels_path = os.path.join(checkpoint_dir, '/labels.txt')
+            labels_path = os.path.join(checkpoint_dir, 'labels.txt')
         self.labels = {}
         with open(labels_path, 'r') as f:
             lines = f.readlines()
@@ -83,7 +86,7 @@ class ConvNetModel(object):
         self.sess = tf.Session(config=config)
 
         self.image_placeholder = tf.placeholder(dtype=tf.uint8,
-                                                shape=(self.height, self.width, 3),
+                                                shape=(None, None, 3),
                                                 name="input_image")
         image_processed = preprocess_image(self.image_placeholder,
                                            self.height,

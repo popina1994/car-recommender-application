@@ -5,7 +5,7 @@ potrebni su form-data: size tipa text , file (file)
 
 vraca json cart_type trenutno Audi A6 u sucaju poslate slike
 
-Za pokretanje potrebno je biti pozicioniran u web/bin/ i pokrenuti sa ./run.sh
+Za pokretanje potrebno je biti pozicioniran u android-application, pri cemu se log nalazi u root.
 
 Za manualno podesavanje potrebno je imati python3 i virtual env
 
