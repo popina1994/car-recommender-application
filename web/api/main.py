@@ -47,7 +47,7 @@ def upload_image():
 
 
 if __name__ == '__main__':
-    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'data')
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), '..\data')
     app.config['SECRET_KEY'] = 'cars123'
     app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
     log_dir = os.path.join(os.getcwd(), '..\..\log');
