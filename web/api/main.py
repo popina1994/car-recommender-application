@@ -3,11 +3,16 @@ import uuid
 
 from flask import Flask, request, jsonify
 
-from exceptions import HTTPException, HTTPBadRequest, HTTPPayloadTooLarge, HTTPMessage
+from web.api.exceptions import HTTPException, HTTPBadRequest, HTTPPayloadTooLarge, HTTPMessage
 from machine_learning.inception import checkpoint_model_api
+from web.model.model import *
+#from web.model.model import Company
 
 app = Flask(__name__)
+
+
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 
 # Log directory where checkpoint model is saved
 
@@ -23,11 +28,13 @@ def handle_invalid_usage(error):
     response.status_code = error.status_code
     return response
 
+
 @app.errorhandler(413)
 def error413(_):
     response = jsonify(HTTPPayloadTooLarge(HTTPMessage.FILE_IS_TOO_LARGE).to_dict())
     response.status_code = 413
     return response
+
 
 @app.route("/v1/rpc/upload", methods=['POST'])
 def upload_image():
@@ -46,10 +53,18 @@ def upload_image():
         raise HTTPBadRequest(HTTPMessage.NOT_EXTENSION_ALLOWED)
 
 
+def init_database():
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Baba1234*@localhost:5432/db_cars'
+    with app.app_context():
+        db.init_app(app)
+    delete_data(app)
+    create_data(app)
 if __name__ == '__main__':
+    init_database()
     app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), '..\data')
     app.config['SECRET_KEY'] = 'cars123'
     app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
     log_dir = os.path.join(os.getcwd(), '..\..\log');
-    app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
-    app.run('192.168.137.212', 5000);
+    #app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
+
+    app.run('10.0.0.220', 5000);
