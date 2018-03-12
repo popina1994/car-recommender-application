@@ -49,11 +49,11 @@ public class UploadReceiver extends UploadServiceBroadcastReceiver {
             JSONObject jsonResponse = new JSONObject(serverResponse.getBodyAsString());
             String carCompany = jsonResponse.getString("car_company");
             String carModel = jsonResponse.getString("car_model");
-            String carChassis = jsonResponse.getString("car_version");
+            String carChassis = jsonResponse.getString("car_chassis");
 
             if (activity != null)
             {
-                activity.tellCar(carCompany + carModel + carChassis);
+                activity.tellCar(carCompany + " " + carModel + " " +  carChassis);
             }
 
         }

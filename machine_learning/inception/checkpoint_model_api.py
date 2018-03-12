@@ -42,7 +42,7 @@ Here is an example of using ConvNetModel class.
 
 """
 
-num_classes = 2
+num_classes = 13
 
 #Log directory where checkpoint model is saved
 log_dir = './log'
