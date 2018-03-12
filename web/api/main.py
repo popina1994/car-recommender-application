@@ -1,6 +1,6 @@
 import os
 import uuid
-
+import numpy as np
 from flask import Flask, request, jsonify
 
 from web.api.exceptions import HTTPException, HTTPBadRequest, HTTPPayloadTooLarge, HTTPMessage
@@ -48,7 +48,7 @@ def upload_image():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         predict_label_id = app.config['MODEL'].predict(image_path=file_path)
-        full_model = FullModel.get_full_model(app=app, id_label=predict_label_id)
+        full_model = FullModel.get_full_model(app=app, id_label=int(predict_label_id))
         return jsonify({'car_company': full_model.Company.Name,
                         'car_model': full_model.Model.Name,
                         'car_chassis': full_model.Version.Name})
