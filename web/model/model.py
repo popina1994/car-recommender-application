@@ -71,13 +71,18 @@ class FullModel(BaseModel, db.Model):
 
     IDFullModel = db.Column(db.Integer, primary_key=True)
     IDCompany = db.Column(db.Integer, db.ForeignKey('Company.IDCompany'))
-    Company = db.relationship("Company", uselist=False)
+    Company = db.relationship("Company", uselist=False, lazy=False)
     IDModel = db.Column(db.Integer, db.ForeignKey('Model.IDModel'))
-    Model = db.relationship("Model", uselist=False)
+    Model = db.relationship("Model", uselist=False, lazy=False)
     IDVersion = db.Column(db.Integer, db.ForeignKey('Version.IDVersion'))
-    Version = db.relationship("Version", uselist=False)
+    Version = db.relationship("Version", uselist=False, lazy=False)
     IDLabel = db.Column(db.Integer)
 
+    @staticmethod
+    def get_full_model(id_label, app):
+        with app.app_context():
+            model = FullModel.query.filter_by(IDLabel=id_label).first()
+        return model
 
 def delete_data(app):
     with app.app_context():

@@ -47,8 +47,11 @@ def upload_image():
         filename = str(uuid.uuid4().hex) + '.' + file.filename.rsplit('.', 1)[1].lower()
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        predict = app.config['MODEL'].predict(image_path=file_path)
-        return jsonify({'car_type': str(predict)})
+        predict_label_id = app.config['MODEL'].predict(image_path=file_path)
+        full_model = FullModel.get_full_model(app=app, id_label=predict_label_id)
+        return jsonify({'car_company': full_model.Company.Name,
+                        'car_model': full_model.Model.Name,
+                        'car_chassis': full_model.Version.Name})
     else:
         raise HTTPBadRequest(HTTPMessage.NOT_EXTENSION_ALLOWED)
 
@@ -65,6 +68,6 @@ if __name__ == '__main__':
     app.config['SECRET_KEY'] = 'cars123'
     app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
     log_dir = os.path.join(os.getcwd(), '..\..\log');
-    #app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
+    app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
 
     app.run('10.0.0.220', 5000);
