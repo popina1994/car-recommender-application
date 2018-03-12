@@ -170,9 +170,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void tellCar(int car)
+    public void tellCar(String car)
     {
-        final String cars[] = {"audi", "bmw"};
-        Toast.makeText(this, cars[car], Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, car, Toast.LENGTH_LONG).show();
     }
 }
