@@ -62,7 +62,7 @@ CREATE SEQUENCE "Company_IDCompany_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "Company_IDCompany_seq" OWNER TO postgres;
@@ -113,7 +113,7 @@ CREATE SEQUENCE "FullModel_IDFullModel_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "FullModel_IDFullModel_seq" OWNER TO postgres;
@@ -147,7 +147,7 @@ CREATE SEQUENCE "Model_IDMod_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "Model_IDMod_seq" OWNER TO postgres;
@@ -181,7 +181,7 @@ CREATE SEQUENCE "Version_IDVer_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "Version_IDVer_seq" OWNER TO postgres;
@@ -233,7 +233,7 @@ CREATE SEQUENCE "WebSiteCompany_IDWebSiteCompany_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "WebSiteCompany_IDWebSiteCompany_seq" OWNER TO postgres;
@@ -269,7 +269,7 @@ CREATE SEQUENCE "WebSiteModel_IDWebSiteModel_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "WebSiteModel_IDWebSiteModel_seq" OWNER TO postgres;
@@ -305,7 +305,7 @@ CREATE SEQUENCE "WebSiteVersion_IDWebSiteVersion_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "WebSiteVersion_IDWebSiteVersion_seq" OWNER TO postgres;
@@ -327,7 +327,7 @@ CREATE SEQUENCE "WebSite_IDWebSite_seq"
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-
+    CACHE 1;
 
 
 ALTER TABLE "WebSite_IDWebSite_seq" OWNER TO postgres;
