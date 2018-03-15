@@ -1,8 +1,10 @@
 #!/bin/bash
 
-PROJECT_DIR=$(dirname $0)
-echo -e $PROJECT_DIR
-ENV="../${PROJECT_DIR}/env"
+BIN_DIR=$(dirname $0)
+PROJ_DIR="${BIN_DIR}/../.."
+echo -e $BIN_DIR
+echo -e $PROJ_DIR
+ENV="${BIN_DIR}/../env"
 
 if [[ ! -e ${ENV} ]]; then
     echo -e "Pravljenje virtual env-a\n"
@@ -17,8 +19,9 @@ echo -e "\n Aktiviranje \n"
 source ${ENV}/bin/activate
 
 echo -e "\n Instaliranje potrebinih biblioteka! \n"
-pip install -r ../${PROJECT_DIR}/requirements3.txt -U
+pip install -r ${BIN_DIR}/../requirements3.txt -U
 
-echo -e "\n Pokretanje web servera! \n"
 
-python3 ../${PROJECT_DIR}/api/main.py
+export PYTHONPATH="$PYTHONPATH:/home/popina/six-pack/"
+cd $PROJ_DIR
+python3 ./web/api/main.py

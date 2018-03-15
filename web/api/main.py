@@ -2,11 +2,9 @@ import os
 import uuid
 import numpy as np
 from flask import Flask, request, jsonify
-
 from web.api.exceptions import HTTPException, HTTPBadRequest, HTTPPayloadTooLarge, HTTPMessage
 from machine_learning.inception import checkpoint_model_api
 from web.model.model import *
-#from web.model.model import Company
 
 app = Flask(__name__)
 
@@ -64,10 +62,10 @@ def init_database():
     create_data(app)
 if __name__ == '__main__':
     init_database()
-    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), '..\data')
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), './web/data')
     app.config['SECRET_KEY'] = 'cars123'
     app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
-    log_dir = os.path.join(os.getcwd(), '..\..\log');
+    log_dir = os.path.join(os.getcwd(), './log');
     app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
 
-    app.run('10.0.0.220', 5000);
+    app.run('62.77.159.178', 5000);
