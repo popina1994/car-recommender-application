@@ -1,0 +1,134 @@
+Here is the list of the cars for which labeling of pictures is planned.
+1) WIth - are the ones whose pictures are uploaded to mega
+2) With * are the ones whose pictures are uploaded, but should be detialed inspected
+3) With nothin are the ones whose pictures are supposed to be downloaded.
+AUDI
+
+-1. a4
+-2. a6
+-3. Q5
+-4. Q7
+-5. a1
+-6. a7
+-7. a3
+-8. Q2
+-9. a5
+-10. Q3
+*******************
+
+BMW
+!!!!-1. series 3
+-2. 118
+-3. 320
+-4. 316
+-5. X1
+-6. 520
+-7. 325
+-8. X3
+-9. X5
+-10. 318
+*******************
+
+VOLKSWAGEN
+*-1. golf 6
+-2. polo
+*-3. golf 4
+*-4. golf 5
+*-5. passat B5.5
+-6. passat B6
+-7. passat CC
+*-8. golf 2
+-9. TOURAN
+*-10. golf 7
+*******************
+
+OPEL
+-1. ASTRA H
+-2. corsa C
+-3. meriva
+-4. zafira
+-5. astra J
+-6. corsa D
+-7. astra G
+-8. vectra
+-9. insignia
+-10. astra F
+*******************
+
+FORD
+-1. focus
+-2. fiesta
+-3. mondeo
+-4. kuga
+-5. galaxy
+-6. c-max
+-7. fusion
+*-8. ranger
+-9. escort
+-10. Ka
+*******************
+
+RENAULT
+-1. clio
+-2. twingo
+-3. megane
+-4. laguna
+-5. scenic
+-6. modus
+-7. kangoo
+-8. captur
+-9. latitude
+-10. fluence
+*******************
+
+PEUGEOT
+-1. 206
+-2. 307
+-3. 207
+-4. 508
+-5. 407
+-6. 308
+-7. 208
+-8. 3008
+-9. 406
+-10. 4007
+*******************
+
+MERZEDES BENZ
+-1. E220
+-2. B200
+-3. E250
+-4. C220
+-5. ML350
+-6. B180
+-7. A170
+-8. C200
+-9. S350
+-10. S320
+*******************
+
+FIAT
+-1. panda
+-2. 500
+-3. multipla
+-4. punto
+-5. bravo
+-6. stilo
+-7. croma
+-8. doblo
+-9. grande punto
+-10. idea
+*******************
+
+KIA
+-1. Sportage
+-2. ceed
+-3. picanto
+-4. sorento
+-5. stonic
+-6. rio
+-7. carens
+-8. cerato
+-9. pride
+-10. soul
+*******************
