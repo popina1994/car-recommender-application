@@ -24,7 +24,10 @@ import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 import net.gotev.uploadservice.UploadServiceBroadcastReceiver;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -61,23 +64,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonUpload.setOnClickListener(this);
     }
 
+    public String saveScaledImage(String path){
+        File file = new File(path);
+        Bitmap origImage= BitmapFactory.decodeFile(path);
+        Bitmap scaledImage = Bitmap.createScaledBitmap(origImage,299,299,false);
+
+
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+
+        scaledImage.compress(Bitmap.CompressFormat.JPEG,70 , outStream);
+
+        String newPath = Environment.getExternalStorageDirectory() + File.separator + "test.jpg";
+        File f = new File(newPath);
+
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileOutputStream fo = null;
+        try {
+            fo = new FileOutputStream(f);
+            fo.write(outStream.toByteArray());
+            // remember close de FileOutput
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return newPath;
+    }
+
     public void uploadMultipart() {
         //getting name for the image
         String name = editText.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
+
         Integer size = 0;
         //Uploading code
-        File file = new File(path);
-        Bitmap bf = BitmapFactory.decodeFile(path);
+
+        String newPath = saveScaledImage(path);
+
+        File file = new File(newPath);
+        Bitmap bf = BitmapFactory.decodeFile(newPath);
         Integer height = bf.getHeight();
         Integer width = bf.getWidth();
         size = width*height;
         try {
             //Creating a multi part request
             new MultipartUploadRequest(this.getApplicationContext(), "", Constants.UPLOAD_URL)
-                    .addFileToUpload(path, "file") //Adding file
+                    .addFileToUpload(newPath, "file") //Adding file
                     .addParameter("size", size.toString()) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
