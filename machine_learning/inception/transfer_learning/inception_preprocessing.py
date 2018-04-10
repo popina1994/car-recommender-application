@@ -60,35 +60,40 @@ def distort_color(image, color_ordering=0, fast_mode=True, scope=None):
   Raises:
     ValueError: if color_ordering not in [0, 3]
   """
+  max_delta_brightness = 32. / 255.
+  max_delta_hue = 0.2
+  lower = 0.5
+  upper = 1.5
+
   with tf.name_scope(scope, 'distort_color', [image]):
     if fast_mode:
       if color_ordering == 0:
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
       else:
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
     else:
       if color_ordering == 0:
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
-        image = tf.image.random_hue(image, max_delta=0.2)
-        image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
+        image = tf.image.random_hue(image, max_delta=max_delta_hue)
+        image = tf.image.random_contrast(image, lower=lower, upper=upper)
       elif color_ordering == 1:
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
-        image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
-        image = tf.image.random_hue(image, max_delta=0.2)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
+        image = tf.image.random_contrast(image, lower=lower, upper=upper)
+        image = tf.image.random_hue(image, max_delta=max_delta_hue)
       elif color_ordering == 2:
-        image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
-        image = tf.image.random_hue(image, max_delta=0.2)
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
+        image = tf.image.random_contrast(image, lower=lower, upper=upper)
+        image = tf.image.random_hue(image, max_delta=max_delta_hue)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
       elif color_ordering == 3:
-        image = tf.image.random_hue(image, max_delta=0.2)
-        image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
-        image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
-        image = tf.image.random_brightness(image, max_delta=32. / 255.)
+        image = tf.image.random_hue(image, max_delta=max_delta_hue)
+        image = tf.image.random_saturation(image, lower=lower, upper=upper)
+        image = tf.image.random_contrast(image, lower=lower, upper=upper)
+        image = tf.image.random_brightness(image, max_delta=max_delta_brightness)
       else:
         raise ValueError('color_ordering must be in [0, 3]')
 
@@ -150,6 +155,7 @@ def distorted_bounding_box_crop(image,
 
     # Crop the image to the specified bounding box.
     cropped_image = tf.slice(image, bbox_begin, bbox_size)
+    print("Cropped image: ", cropped_image)
     return cropped_image, distort_bbox
 
 
@@ -194,14 +200,15 @@ def preprocess_for_train(image, height, width, bbox,
                                                   bbox)
     tf.summary.image('image_with_bounding_boxes', image_with_box)
 
-    distorted_image, distorted_bbox = distorted_bounding_box_crop(image, bbox)
+    # distorted_image, distorted_bbox = distorted_bounding_box_crop(image, bbox)
+
     # Restore the shape since the dynamic slice based upon the bbox_size loses
     # the third dimension.
-    distorted_image.set_shape([None, None, 3])
-    image_with_distorted_box = tf.image.draw_bounding_boxes(
-        tf.expand_dims(image, 0), distorted_bbox)
-    tf.summary.image('images_with_distorted_bounding_box',
-                     image_with_distorted_box)
+    # distorted_image.set_shape([None, None, 3])
+    # image_with_distorted_box = tf.image.draw_bounding_boxes(
+    #     tf.expand_dims(image, 0), distorted_bbox)
+    # tf.summary.image('images_with_distorted_bounding_box',
+    #                  image_with_distorted_box)
 
     # This resizing operation may distort the images because the aspect
     # ratio is not respected. We select a resize method in a round robin
@@ -211,7 +218,7 @@ def preprocess_for_train(image, height, width, bbox,
     # We select only 1 case for fast_mode bilinear.
     num_resize_cases = 1 if fast_mode else 4
     distorted_image = apply_with_random_selector(
-        distorted_image,
+        image,
         lambda x, method: tf.image.resize_images(x, [height, width], method=method),
         num_cases=num_resize_cases)
 
@@ -301,4 +308,4 @@ def preprocess_image(image, height, width,
   if is_training:
     return preprocess_for_train(image, height, width, bbox, fast_mode)
   else:
-    return preprocess_for_eval(image, height, width)
+    return preprocess_for_eval(image, height, width, central_fraction=0)

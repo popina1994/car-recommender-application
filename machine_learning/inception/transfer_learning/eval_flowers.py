@@ -10,24 +10,25 @@ plt.style.use('ggplot')
 slim = tf.contrib.slim
 
 #State your log directory where you can retrieve your model
-log_dir = './log'
+log_dir = '../../../../bmw/log'
 
 #Create a new evaluation log directory to visualize the validation process
-log_eval = './log_eval_test'
+log_eval = '../../../../bmw/log_eval_test'
 
 #State the dataset directory where the validation set is found
-dataset_dir = '../../cars'
+dataset_dir = '../../../../bmw'
 
 #State the batch_size to evaluate each time, which can be a lot more than the training batch
-batch_size = 3
+batch_size = 64
 
 #State the number of epochs to evaluate
-num_epochs = 3
+num_epochs = 1
 
 #Get the latest checkpoint file
 checkpoint_file = tf.train.latest_checkpoint(log_dir)
 
 def run():
+    print(checkpoint_file)
     #Create log_dir for evaluation information
     if not os.path.exists(log_eval):
         os.mkdir(log_eval)
@@ -99,8 +100,6 @@ def run():
                     eval_step(sess, metrics_op = metrics_op, global_step = sv.global_step)
                     summaries = sess.run(my_summary_op)
                     sv.summary_computed(sess, summaries)
-                    
-
                 #Otherwise just run as per normal
                 else:
                     eval_step(sess, metrics_op = metrics_op, global_step = sv.global_step)

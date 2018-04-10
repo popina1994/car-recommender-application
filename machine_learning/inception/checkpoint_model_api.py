@@ -1,9 +1,6 @@
 import tensorflow as tf
-
-import sys
-
-from .transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
-from .transfer_learning.inception_preprocessing import preprocess_image
+from transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
+from transfer_learning.inception_preprocessing import preprocess_image
 from PIL import Image
 import numpy as np
 import os
@@ -45,7 +42,7 @@ Here is an example of using ConvNetModel class.
 num_classes = 13
 
 #Log directory where checkpoint model is saved
-log_dir = './log'
+log_dir = '../../../bmw_log/log'
 
 #Labels path
 labels_path = './log/labels.txt'
@@ -76,6 +73,7 @@ class ConvNetModel(object):
                 label = int(line[0])
                 label_name = line[1]
                 self.labels[label] = label_name
+
         # Reset all graphs before
         tf.reset_default_graph()
 
@@ -115,12 +113,62 @@ class ConvNetModel(object):
         img = np.asarray(img)
         logits_eval, pred = self.sess.run([self.logits, self.predictions],
                                           feed_dict={self.image_placeholder: img})
-        return pred[0]
+        return pred[0], self.labels[pred[0]]
 
 
 if __name__ == "__main__":
+    import glob
+    import cv2
+    import random
+    from create_tfrecords.dataset_utils import _get_filenames_and_classes
+    #filenames = glob.glob("../../../bmw/cars_for_testing/*.jpg")
+    #filenames = sorted(filenames, key=lambda f: int(os.path.basename(f).split("_")[0]))
+    photo_filenames, class_names = _get_filenames_and_classes("../../../bmw/bmw_dataset")
+    class_names_to_ids = dict(zip(class_names, range(len(class_names))))
+    # Find the number of validation examples we need
+    num_validation = int(0.1 * len(photo_filenames))
+
+    # Divide the training datasets into train and test:
+    random.seed(0)
+    random.shuffle(photo_filenames)
+    validation_filenames = photo_filenames[:num_validation]
+
+    labels = []
+    pred_labels = []
+    model = ConvNetModel(checkpoint_dir=log_dir, labels_path=None)
+    for i, filename in enumerate(validation_filenames):
+        if i % 50 == 0:
+            print(i)
+        class_name = os.path.basename(os.path.dirname(filename))
+        class_id = class_names_to_ids[class_name]
+        labels.append(int(class_id))
+        pred_label, _ = model.predict(filename)
+        pred_labels.append(pred_label)
+
+    labels = np.array(labels)
+    print(labels)
+    pred_labels = np.array(pred_labels)
+    acc = np.sum(labels == pred_labels) / len(labels)
+    print(acc)
+
+
+
+    #model = ConvNetModel(checkpoint_dir=log_dir, labels_path=None)
+    #for i, file_path in enumerate(filenames):
+    #    pred, label = model.predict(image_path=filenames[i])
+    #    image_name = os.path.basename(file_path).split("_")
+    #    print(image_name[0], " ", image_name[1]+image_name[2], " ", label)
+
+
+
+
+
+
     # Loading checkpoint model
-    model = ConvNetModel(checkpoint_dir=log_dir, labels_path=labels_path)
+    #model = ConvNetModel(checkpoint_dir=log_dir, labels_path=labels_path)
 
     # Predict car model
-    pred = model.predict(image_path='../../../CarAppML/cars/val_data/bmw/val_image_1.jpg')
+    #pred = model.predict(image_path='../../../../CarAppML/cars/val_data/bmw/val_image_1.jpg')
+
+    #pred = model.predict(image_path='../../../../CarAppML/bmw_test_for_check.jpg')
+    #print(pred)
