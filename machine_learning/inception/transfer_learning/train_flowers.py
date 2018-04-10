@@ -9,53 +9,53 @@ slim = tf.contrib.slim
 
 #================ DATASET INFORMATION ======================
 #State dataset directory where the tfrecord files are located
-dataset_dir = '../../cars'
+dataset_dir = '../../../../bmw'
 
 #State where your log file is at. If it doesn't exist, create it.
-log_dir = './log'
+log_dir = '../../../../bmw/log'
 
 #State where your checkpoint file is
-checkpoint_file = './inception_resnet_v2_2016_08_30.ckpt'
+checkpoint_file = '../../../../inception_resnet_v2_2016_08_30.ckpt'
 
 #State the image size you're resizing your images to. We will use the default inception size of 299.
 image_size = 299
 
 #State the number of classes to predict:
-num_classes = 2
+num_classes = 13
 
 #State the labels file and read it
-labels_file = '../../cars/labels.txt'
+labels_file = '../../../../bmw/labels.txt'
 labels = open(labels_file, 'r')
 
 #Create a dictionary to refer each label to their string name
 labels_to_name = {}
 for line in labels:
     label, string_name = line.split(':')
-    string_name = string_name[:-1] #Remove newline
+    string_name = string_name[:-1]  # Remove newline
     labels_to_name[int(label)] = string_name
 
 #Objects type name
-objects_type_name = 'cars'
+objects_type_name = 'bmw_models'
 
 #Create the file pattern of your TFRecord files so that it could be recognized later on
 file_pattern = objects_type_name + '_%s_*.tfrecord'
 
 #Create a dictionary that will help people understand your dataset better. This is required by the Dataset class later.
 items_to_descriptions = {
-    'image': 'A 3-channel RGB coloured car image that is either audi or bmw.',
-    'label': 'A label that is as such -- 0:audi, 1:bmw'
+    'image': 'A 3-channel RGB coloured car image that is of some car model type.',
+    'label': 'A label that is as such -- 0:audi, 1:bmw, ...'
 }
 
 
 #================= TRAINING INFORMATION ==================
 #State the number of epochs to train
-num_epochs = 20
+num_epochs = 30
 
 #State your batch size
 batch_size = 3
 
 #Learning rate information and configuration (Up to you to experiment)
-initial_learning_rate = 0.0002
+initial_learning_rate = 0.00009
 learning_rate_decay_factor = 0.7
 num_epochs_before_decay = 2
 
@@ -172,6 +172,7 @@ def load_batch(dataset, batch_size, height=image_size, width=image_size, is_trai
 
     return images, raw_images, labels
 
+
 def run():
     #Create the log directory here. Must be done here otherwise import will activate this unneededly.
     if not os.path.exists(log_dir):
@@ -272,10 +273,6 @@ def run():
 
                     # optionally, print your logits and predictions for a sanity check that things are going fine.
                     logits_value, probabilities_value, predictions_value, labels_value = sess.run([logits, probabilities, predictions, labels])
-                    print ('logits: \n', logits_value)
-                    print ('Probabilities: \n', probabilities_value)
-                    print ('predictions: \n', predictions_value)
-                    print ('Labels:\n:', labels_value)
 
                 #Log the summaries every 10 step.
                 if step % 100 == 0:
@@ -293,7 +290,7 @@ def run():
 
             #Once all the training has been done, save the log files and checkpoint model
             logging.info('Finished training! Saving model to disk now.')
-            # saver.save(sess, "./flowers_model.ckpt")
+            # saver.save(sess, "./flowers_model.ckpt")jan
             sv.saver.save(sess, sv.save_path, global_step = sv.global_step)
 
 
