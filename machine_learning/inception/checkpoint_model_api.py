@@ -1,6 +1,6 @@
 import tensorflow as tf
-from transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
-from transfer_learning.inception_preprocessing import preprocess_image
+from .transfer_learning.inception_resnet_v2 import inception_resnet_v2, inception_resnet_v2_arg_scope
+from .transfer_learning.inception_preprocessing import preprocess_image
 from PIL import Image
 import numpy as np
 import os

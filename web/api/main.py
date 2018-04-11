@@ -1,3 +1,4 @@
+
 import os
 import uuid
 import numpy as np
@@ -45,7 +46,7 @@ def upload_image():
         filename = str(uuid.uuid4().hex) + '.' + file.filename.rsplit('.', 1)[1].lower()
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        predict_label_id = app.config['MODEL'].predict(image_path=file_path)
+        predict_label_id = app.config['MODEL'].predict(image_path=file_path)[0]
         full_model = FullModel.get_full_model(app=app, id_label=int(predict_label_id))
         return jsonify({'car_company': full_model.Company.Name,
                         'car_model': full_model.Model.Name,
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     init_database()
     app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), './web/data')
     app.config['SECRET_KEY'] = 'cars123'
-    app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+    app.config['MAX_CONTENT_LENGTH'] = 4098 * 4098;
     log_dir = os.path.join(os.getcwd(), './log');
     app.config['MODEL'] = checkpoint_model_api.ConvNetModel(checkpoint_dir=log_dir)
 
