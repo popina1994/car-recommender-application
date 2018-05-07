@@ -106,15 +106,12 @@ def create_data(app):
     company_audi = Company(Name='Audi')
     companies = [company_bmw, company_audi]
     model_118d = Model(Name='118d')
-    model_316d = Model(Name='316d')
-    model_318 = Model(Name='318')
-    model_320d = Model(Name='320d')
-    model_325 = Model(Name='325')
+    model_31xd = Model(Name='31xd')
     model_520d = Model(Name='520d')
     model_x1 = Model(Name='x1')
     model_x3 = Model(Name='x3')
     model_x5 = Model(Name='x5')
-    models = [model_118d, model_316d, model_318, model_320d, model_325, model_520d, model_x1,
+    models = [model_118d, model_31xd, model_520d, model_x1,
               model_x3, model_x5]
     version_caravan = Version(Name='caravan')
     version_saloon = Version(Name='saloon')
@@ -122,18 +119,13 @@ def create_data(app):
     version_suv = Version(Name='suv')
     versions = [version_caravan, version_saloon, version_sedan, version_suv]
     full_models = [FullModel(Company=company_bmw, Model=model_118d, Version=version_saloon, IDLabel=0),
-                   FullModel(Company=company_bmw, Model=model_316d, Version=version_caravan, IDLabel=1),
-                   FullModel(Company=company_bmw, Model=model_316d, Version=version_sedan,  IDLabel=2),
-                   FullModel(Company=company_bmw, Model=model_318, Version=version_caravan, IDLabel=3),
-                   FullModel(Company=company_bmw, Model=model_318, Version=version_sedan, IDLabel=4),
-                   FullModel(Company=company_bmw, Model=model_320d, Version=version_caravan, IDLabel=5),
-                   FullModel(Company=company_bmw, Model=model_320d, Version=version_sedan, IDLabel=6),
-                   FullModel(Company=company_bmw, Model=model_325, Version=version_sedan, IDLabel=7),
-                   FullModel(Company=company_bmw, Model=model_520d, Version=version_caravan, IDLabel=8),
-                   FullModel(Company=company_bmw, Model=model_520d, Version=version_sedan, IDLabel=9),
-                   FullModel(Company=company_bmw, Model=model_x1, Version=version_suv, IDLabel=10),
-                   FullModel(Company=company_bmw, Model=model_x3, Version=version_suv, IDLabel=11),
-                   FullModel(Company=company_bmw, Model=model_x5, Version=version_suv, IDLabel=12)
+                   FullModel(Company=company_bmw, Model=model_31xd, Version=version_caravan, IDLabel=1),
+                   FullModel(Company=company_bmw, Model=model_31xd, Version=version_sedan,  IDLabel=2),
+                   FullModel(Company=company_bmw, Model=model_520d, Version=version_caravan, IDLabel=3),
+                   FullModel(Company=company_bmw, Model=model_520d, Version=version_sedan, IDLabel=4),
+                   FullModel(Company=company_bmw, Model=model_x1, Version=version_suv, IDLabel=5),
+                   FullModel(Company=company_bmw, Model=model_x3, Version=version_suv, IDLabel=6),
+                   FullModel(Company=company_bmw, Model=model_x5, Version=version_suv, IDLabel=7)
                    ]
     with app.app_context():
         for it in companies:
