@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="popina.mlcars.upload.UploadActivity"
+    android:background="@drawable/captured_image">
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:onClick="onClickUpload"
+        android:text="Find car"/>
+
+    <ImageView
+        android:id="@+id/uploadImgView"
+        android:layout_width="309dp"
+        android:layout_height="394dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="popina.mlcars.search.SearchActivity">
+
+    <TextView
+        android:id="@+id/modelNameId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:text="BMW 320d"
+        android:textAlignment="center"
+        android:textSize="20dp"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewId"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp">
+
+    </ListView>
+</LinearLayout>
