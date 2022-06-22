@@ -15,7 +15,7 @@ Jinja2==2.10
 Mako==1.0.7
 Markdown==2.6.11
 MarkupSafe==1.0
-numpy==1.14.1
+numpy==1.22.0
 Pillow==5.0.0
 protobuf==3.5.1
 psycopg2==2.7.4
